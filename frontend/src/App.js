@@ -5,6 +5,7 @@ import { Container } from 'react-bootstrap';
 import React, {useState, useEffect} from 'react';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import HomePage from './containers/HomePage';
 
 
 function App() {
@@ -18,7 +19,10 @@ function App() {
     }
     fetchProducts()
   }, [])
-  console.log(products)
+  // console.log(products)
+
+  // const productsToDisplay = products.map(product => <p>Product: {product.name} | Price: {product.price}</p>)
+
 
   // useEffect(() => {
   //   console.log("useEffect triggered")
@@ -26,7 +30,6 @@ function App() {
   //   .then(res => res.json())
   //   .then(json => console.log(json))
   // }, [])
-  const productsToDisplay = products.map(product => <p>Product: {product.name} | Price: {product.price}</p>)
 
   return (
     <div className="App">
@@ -35,6 +38,7 @@ function App() {
         <Container>
           <h1>Welcome</h1>
         </Container>
+        <HomePage products={products}/>
       </main>
       <Footer />
 
