@@ -2,6 +2,9 @@
 // import './App.css';
 import axios from 'axios';
 import React, {useState, useEffect} from 'react';
+import Header from './components/Header';
+import Footer from './components/Footer';
+
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -22,12 +25,16 @@ function App() {
   //   .then(res => res.json())
   //   .then(json => console.log(json))
   // }, [])
-  const productsToDisplay = products.map(product => <p>{product.name}</p>)
+  const productsToDisplay = products.map(product => <p>Product: {product.name} | Price: {product.price}</p>)
 
   return (
     <div className="App">
-      <h2>Hello World</h2>
-      {productsToDisplay}
+      <Header />
+      <main>
+        <h1>Welcome</h1>
+      </main>
+      <Footer />
+
     </div>
   );
 }
