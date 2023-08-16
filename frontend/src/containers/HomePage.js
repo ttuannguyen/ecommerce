@@ -10,9 +10,9 @@ const HomePage = ({ products }) => {
     <div>
         <h1>Lastest Products</h1>
         <Row>
-            {products.map(p => (
-                <Col>
-                    <h3>{p.name}</h3>
+            {products.map(product => (
+                <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
+                    <h3>{product.name}</h3>
                 </Col>
             ))}
         </Row>
