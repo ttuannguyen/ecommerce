@@ -1,6 +1,7 @@
 // import logo from './logo.svg';
 // import './App.css';
 import axios from 'axios';
+import { Container } from 'react-bootstrap';
 import React, {useState, useEffect} from 'react';
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -30,8 +31,10 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <main>
-        <h1>Welcome</h1>
+      <main className='py-3'>
+        <Container>
+          <h1>Welcome</h1>
+        </Container>
       </main>
       <Footer />
 
