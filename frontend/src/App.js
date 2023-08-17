@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import HomePage from './containers/HomePage';
+import ProductContainer from './containers/ProductContainer';
 
 
 
@@ -41,6 +42,7 @@ function App() {
         <Container>
           <Routes>
               <Route exact path='/home' element={<HomePage products={products} />}/>
+              <Route path='/product/:id' element={<ProductContainer />}/>
           </Routes>
         </Container>
         </main>
