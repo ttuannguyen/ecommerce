@@ -3,9 +3,11 @@
 import axios from 'axios';
 import { Container } from 'react-bootstrap';
 import React, {useState, useEffect} from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import HomePage from './containers/HomePage';
+
 
 
 function App() {
@@ -33,14 +35,17 @@ function App() {
 
   return (
     <div className="App">
+      <Router>
       <Header />
       <main className='py-3'>
         <Container>
-          <HomePage products={products}/>
+          <Routes>
+              <Route exact path='/home' element={<HomePage products={products} />}/>
+          </Routes>
         </Container>
-      </main>
-      <Footer />
-
+        </main>
+        <Footer />
+      </Router>
     </div>
   );
 }
