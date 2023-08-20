@@ -19,9 +19,9 @@ const Header = () => {
               </LinkContainer>
 
               <LinkContainer to='/login'>
-              <Nav.Link><i className="fas fa-user"></i>Login</Nav.Link>
+                <Nav.Link><i className="fas fa-user"></i>Login</Nav.Link>
               </LinkContainer>
-              
+
             </Nav>
           </Navbar.Collapse>
         </Container>
