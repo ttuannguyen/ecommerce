@@ -12,8 +12,20 @@ const ProductContainer = ({ products }) => {
   
     return (
     <div>
-        {product.name}
         <Link to='/home' className='btn btn-light my-3'>Back to Products</Link>
+        <Row>
+            <Col md={6}>
+                <Image src={product.image} alt={product.name} fluid />
+            </Col>
+        </Row>
+        <Col md={6}>
+            <ListGroup variant='flush'>
+                <ListGroup.Item>
+                    <h3>{product.name}</h3>
+                </ListGroup.Item>
+            </ListGroup>
+        </Col>
+        <Col md={6}></Col>
     </div>
   )
 }
