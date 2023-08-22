@@ -8,11 +8,18 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import HomePage from './containers/HomePage';
 import ProductContainer from './containers/ProductContainer';
-
+import { listProductsAsync } from './features/products/productsSlice';
+import { useDispatch } from 'react-redux';
 
 
 function App() {
   const [products, setProducts] = useState([]);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(listProductsAsync())
+  }, [dispatch])
 
   useEffect(() => {
     console.log("useEffect triggered")
@@ -41,7 +48,7 @@ function App() {
       <main className='py-3'>
         <Container>
           <Routes>
-              {/* <Route exact path='/' element={<HomePage products={products} />}/> */}
+              <Route exact path='/' element={<HomePage products={products} />}/>
               <Route path='/product/:id' element={<ProductContainer products={products}/>}/>
           </Routes>
         </Container>

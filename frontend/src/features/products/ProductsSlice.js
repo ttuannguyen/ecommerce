@@ -2,29 +2,26 @@ import axios from 'axios';
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 
 const initialState = {
-    products: []
+    entities: []
 }
 
-export const fetchProductsAsync = createAsyncThunk(
+export const listProductsAsync = createAsyncThunk(
     'products/fetchProducts',
-    // regular fetch
-    // () => {
-    //     return fetch('/api/products/')
-    //     .then(res => res.json())
-    //     .then(data => data)
-    // }
-    // async / await fetch
 
     async () => {
-        const fetchProducts = () => {
-            axios
-                .get('/api/products/')
-                .then(data => console.log(data))
-        }
-        const response = await fetchProducts()
-        return response
+        const response = await axios.get('/api/products/')
+        return response.data
     }
 
+    // async () => {
+    //     const listProducts = () => {
+    //         axios
+    //             .get('/api/products/')
+    //             .then(res => res)
+    //     }
+    //     const response = await listProducts()
+    //     return response
+    // }
 )
 
 export const productsSlice = createSlice({
@@ -37,13 +34,16 @@ export const productsSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder
-        .addCase(fetchProductsAsync.pending, (state, action) => {
+        .addCase(listProductsAsync.pending, (state, action) => {
             state.status = 'loading'
         })
-        .addCase(fetchProductsAsync.fulfilled, (state, action) => {
+        .addCase(listProductsAsync.fulfilled, (state, action) => {
             state.entities = action.payload
             state.status = 'fullfilled'
             state.toogle = true
+        })
+        .addCase(listProductsAsync.rejected, (state, action) => {
+            state.status = 'rejected'
         })
     }
 })
