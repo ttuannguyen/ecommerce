@@ -1,8 +1,6 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import thunk from 'redux-thunk';
-import productsReducer from './features/products/ProductsSlice'
-// import { composeWithDevTools } from '@reduxjs/toolkit/dist/devtoolsExtension';
-
+import productsReducer from './features/products/productsSlice';
 
 
 
@@ -16,7 +14,7 @@ const rootReducer = combineReducers({
 
 const store = configureStore({
     reducer: rootReducer,
-    middleware: [thunk]
+    // middleware: [thunk]
 })
 
 
