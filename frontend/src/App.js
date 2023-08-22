@@ -9,11 +9,10 @@ import Footer from './components/Footer';
 import HomePage from './containers/HomePage';
 import ProductContainer from './containers/ProductContainer';
 import { listProductsAsync } from './features/products/productsSlice';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 
 function App() {
-  const [products, setProducts] = useState([]);
 
   const dispatch = useDispatch();
 
@@ -21,14 +20,17 @@ function App() {
     dispatch(listProductsAsync())
   }, [dispatch])
 
-  useEffect(() => {
-    console.log("useEffect triggered")
-    async function fetchProducts() {
-      const { data } = await axios.get('/api/products/')
-      setProducts(data)
-    }
-    fetchProducts()
-  }, [])
+  const products = useSelector(state => state.products.entities)
+  console.log(products)
+
+  // useEffect(() => {
+  //   console.log("useEffect triggered")
+  //   async function fetchProducts() {
+  //     const { data } = await axios.get('/api/products/')
+  //     setProducts(data)
+  //   }
+  //   fetchProducts()
+  // }, [])
   // console.log(products)
 
   // const productsToDisplay = products.map(product => <p>Product: {product.name} | Price: {product.price}</p>)

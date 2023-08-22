@@ -12,16 +12,6 @@ export const listProductsAsync = createAsyncThunk(
         const response = await axios.get('/api/products/')
         return response.data
     }
-
-    // async () => {
-    //     const listProducts = () => {
-    //         axios
-    //             .get('/api/products/')
-    //             .then(res => res)
-    //     }
-    //     const response = await listProducts()
-    //     return response
-    // }
 )
 
 export const productsSlice = createSlice({
