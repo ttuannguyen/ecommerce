@@ -1,13 +1,13 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import thunk from 'redux-thunk';
-import productsReducer from ''
+import productsReducer from './features/products/ProductsSlice'
 // import { composeWithDevTools } from '@reduxjs/toolkit/dist/devtoolsExtension';
 
 
 
 
 const rootReducer = combineReducers({
-
+    products: productsReducer
 })
 
 // const middleware = [thunk]
