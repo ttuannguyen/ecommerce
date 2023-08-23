@@ -2,14 +2,16 @@ import axios from 'axios';
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 
 const initialState = {
-    entities: []
+    entities: [],
+    errors: null,
+    status: 'idle',
 }
 
 export const listProductsAsync = createAsyncThunk(
     'products/fetchProducts',
 
     async () => {
-        const response = await axios.get('/api/products/')
+        const response = await axios.get('/ap/products/')
         return response.data
     }
 )
@@ -24,16 +26,17 @@ export const productsSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder
-        .addCase(listProductsAsync.pending, (state, action) => {
+        .addCase(listProductsAsync.pending, (state) => {
             state.status = 'loading'
         })
         .addCase(listProductsAsync.fulfilled, (state, action) => {
             state.entities = action.payload
-            state.status = 'fullfilled'
+            state.status = 'fulfilled'
             state.toogle = true
         })
         .addCase(listProductsAsync.rejected, (state, action) => {
             state.status = 'rejected'
+            // state.errors = action.error.message
         })
     }
 })

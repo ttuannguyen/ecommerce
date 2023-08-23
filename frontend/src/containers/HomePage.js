@@ -1,21 +1,38 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Row, Col } from 'react-bootstrap'
 import Product from '../components/Product'
+import { useDispatch, useSelector } from 'react-redux';
+import { listProductsAsync } from '../features/products/productsSlice';
 
 
-const HomePage = ({ products }) => {
+const HomePage = () => {
 
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+      dispatch(listProductsAsync())
+    }, [dispatch])
+
+    const products = useSelector(state => state.products.entities)
+    const status = useSelector(state => state.products.status)
+    const errors = useSelector(state => state.products.errors)
+
+    // const { errors, status, entities } = productsList
 
     return (
         <div>
             <h1>New Arrivals!</h1>
-            <Row>
-                {products.map(product => (
-                    <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
-                        <Product product={product}/>
-                    </Col>
-                ))}
-            </Row>
+            {status === "loading" ? <h2>Loading...</h2>
+                : errors ? <h3>{errors}</h3>
+                    :
+                    <Row>
+                        {products.map(product => (
+                            <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
+                                <Product product={product}/>
+                            </Col>
+                        ))}
+                    </Row>
+            }
         </div>
     )
 }
