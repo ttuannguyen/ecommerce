@@ -3,6 +3,7 @@ import { Row, Col } from 'react-bootstrap'
 import Product from '../components/Product'
 import { useDispatch, useSelector } from 'react-redux';
 import { listProductsAsync } from '../features/products/productsSlice';
+import Loader from '../components/Loader';
 
 
 const HomePage = () => {
@@ -22,7 +23,7 @@ const HomePage = () => {
     return (
         <div>
             <h1>New Arrivals!</h1>
-            {status === "loading" ? <h2>Loading...</h2>
+            {status === "loading" ? <Loader />
                 : errors ? <h3>{errors}</h3>
                     :
                     <Row>
