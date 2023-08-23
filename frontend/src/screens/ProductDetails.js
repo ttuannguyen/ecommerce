@@ -3,12 +3,14 @@ import { Link, useParams } from 'react-router-dom'
 import { Row, Col, Image, ListGroup, Button, Card } from 'react-bootstrap'
 import Rating from '../components/Rating'
 
+// This page is used to display the details of the product
 
-
-const ProductContainer = ({ products }) => {
+const ProductDetails = ({ products }) => {
 
     const params = useParams();
     const product = products.find(p => p._id === parseInt(params.id))
+
+    // const product = {}
   
     return (
     <div>
@@ -71,4 +73,4 @@ const ProductContainer = ({ products }) => {
   )
 }
 
-export default ProductContainer
+export default ProductDetails

@@ -6,10 +6,10 @@ import React, {useState, useEffect} from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import HomePage from './containers/HomePage';
-import ProductContainer from './containers/ProductContainer';
+import HomePage from './screens/HomePage';
 import { listProductsAsync } from './features/products/productsSlice';
 import { useDispatch, useSelector } from 'react-redux';
+import ProductDetails from './screens/ProductDetails';
 
 
 function App() {
@@ -51,7 +51,7 @@ function App() {
         <Container>
           <Routes>
               <Route exact path='/' element={<HomePage />}/>
-              <Route path='/product/:id' element={<ProductContainer products={products}/>}/>
+              <Route path='/product/:id' element={<ProductDetails products={products}/>}/>
           </Routes>
         </Container>
         </main>

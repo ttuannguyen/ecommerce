@@ -8,10 +8,18 @@ const initialState = {
 }
 
 export const listProductsAsync = createAsyncThunk(
-    'products/fetchProducts',
+    'products/listProducts',
 
     async () => {
-        const response = await axios.get('/ap/products/')
+        const response = await axios.get('/api/products/')
+        return response.data
+    }
+)
+
+export const listProductAsync = createAsyncThunk(
+    'products/listProduct',
+    async ({id}) => {
+        const response = await axios.get(`/api/products/${id}`)
         return response.data
     }
 )
@@ -35,6 +43,18 @@ export const productsSlice = createSlice({
             state.toogle = true
         })
         .addCase(listProductsAsync.rejected, (state, action) => {
+            state.status = 'rejected'
+            state.errors = action.error.message
+        })
+        .addCase(listProductAsync.pending, (state) => {
+            state.status = 'loading'
+        })
+        .addCase(listProductAsync.fulfilled, (state, action) => {
+            state.entities = action.payload
+            state.status = 'fulfilled'
+            state.toogle = true
+        })
+        .addCase(listProductAsync.rejected, (state, action) => {
             state.status = 'rejected'
             state.errors = action.error.message
         })
