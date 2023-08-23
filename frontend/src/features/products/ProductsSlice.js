@@ -36,7 +36,7 @@ export const productsSlice = createSlice({
         })
         .addCase(listProductsAsync.rejected, (state, action) => {
             state.status = 'rejected'
-            // state.errors = action.error.message
+            state.errors = action.error.message
         })
     }
 })
