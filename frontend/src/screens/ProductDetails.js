@@ -89,7 +89,7 @@ const ProductDetails = () => {
                                             <Form.Control
                                                 as='select'
                                                 value={qty}
-                                                // onChange={(e) => setQty(e.target.value)}
+                                                onChange={(e) => setQty(e.target.value)}
                                             >
                                                 {
                                                     [...Array(product.countInStock).keys()].map((x) =>(
