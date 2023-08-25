@@ -3,6 +3,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 
 const initialState = {
     entities: [],
+    productDetails: {},
     errors: null,
     status: 'idle',
 }
@@ -18,8 +19,8 @@ export const listProductsAsync = createAsyncThunk(
 
 export const listProductAsync = createAsyncThunk(
     'products/listProduct',
-    async ({id}) => {
-        const response = await axios.get(`/api/products/${id}`)
+    async (params) => {
+        const response = await axios.get(`/api/products/${params.id}`)
         return response.data
     }
 )
@@ -50,7 +51,7 @@ export const productsSlice = createSlice({
             state.status = 'loading'
         })
         .addCase(listProductAsync.fulfilled, (state, action) => {
-            state.entities = action.payload
+            state.productDetails = action.payload
             state.status = 'fulfilled'
             state.toogle = true
         })

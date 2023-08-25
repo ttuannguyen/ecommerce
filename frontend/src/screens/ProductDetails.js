@@ -1,20 +1,29 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { Row, Col, Image, ListGroup, Button, Card } from 'react-bootstrap'
 import Rating from '../components/Rating'
+import { useDispatch, useSelector } from 'react-redux';
+import { listProductAsync } from '../features/products/productsSlice';
 
 // This page is used to display the details of the product
 
-const ProductDetails = ({ products }) => {
+const ProductDetails = () => {
 
+    const dispatch = useDispatch();
     const params = useParams();
-    const product = products.find(p => p._id === parseInt(params.id))
+    // const product = products.find(p => p._id === parseInt(params.id))
 
-    // const product = {}
+    useEffect(() => {
+        dispatch(listProductAsync(params))
+    }, [dispatch])
+
+    const product = useSelector(state => state.products.productDetails)
+    console.log(product)
+    
   
     return (
     <div>
-        <Link to='/home' className='btn btn-light my-3'>Back to Products</Link>
+        <Link to='/' className='btn btn-light my-3'>Back to Products</Link>
         <Row>
             <Col md={6}>
                 <Image src={product.image} alt={product.name} fluid />
