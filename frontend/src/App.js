@@ -10,6 +10,7 @@ import HomePage from './screens/HomePage';
 import { listProductsAsync } from './features/products/productsSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import ProductDetails from './screens/ProductDetails';
+import Cart from './screens/Cart';
 
 
 function App() {
@@ -52,6 +53,7 @@ function App() {
           <Routes>
               <Route exact path='/' element={<HomePage />}/>
               <Route path='/product/:id' element={<ProductDetails products={products}/>}/>
+              {/* <Route path='/cart/:id?' element={<Cart />} /> */}
           </Routes>
         </Container>
         </main>

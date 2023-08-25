@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { Row, Col, Image, ListGroup, Button, Card, Form } from 'react-bootstrap';
 import Rating from '../components/Rating';
 import Loader from '../components/Loader';
@@ -13,6 +13,7 @@ const ProductDetails = () => {
 
     const dispatch = useDispatch();
     const params = useParams();
+    const navigate = useNavigate();
     const [qty, setQty] = useState(1)
     // const product = products.find(p => p._id === parseInt(params.id))
 
@@ -25,7 +26,8 @@ const ProductDetails = () => {
     const errors = useSelector(state => state.products.errors)
 
     const addToCartHandler = () => {
-        console.log(`Add to cart: ${params.id}`)
+        // console.log(`Add to cart: ${params.id}`)
+        navigate(`/cart/${params.id}?qty=${qty}`)
     }
     
   
