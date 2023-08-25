@@ -23,6 +23,10 @@ const ProductDetails = () => {
     const product = useSelector(state => state.products.productDetails)
     const status = useSelector(state => state.products.status)
     const errors = useSelector(state => state.products.errors)
+
+    const addToCartHandler = () => {
+        console.log(`Add to cart: ${params.id}`)
+    }
     
   
     return (
@@ -105,7 +109,14 @@ const ProductDetails = () => {
                             )}
         
                             <ListGroup.Item>
-                                <Button className='btn-block' disabled={product.countInStock == 0} type='button'>Add to Cart</Button>
+                                <Button 
+                                    onClick={addToCartHandler}
+                                    className='btn-block' 
+                                    disabled={product.countInStock == 0} 
+                                    type='button'
+                                >
+                                    Add to Cart
+                                </Button>
                             </ListGroup.Item>
                         </ListGroup>
                     </Card>
