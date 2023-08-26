@@ -1,11 +1,13 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import thunk from 'redux-thunk';
 import productsReducer from './features/products/productsSlice';
+import cartReducer from './features/cart/cartSlice'
 
 
 
 const rootReducer = combineReducers({
-    products: productsReducer
+    products: productsReducer,
+    cart: cartReducer
 })
 
 // const middleware = [thunk]
