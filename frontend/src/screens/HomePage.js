@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react'
-import { Row, Col } from 'react-bootstrap'
-import ProductCard from '../components/ProductCard'
+import React, { useEffect } from 'react';
+import { Row, Col } from 'react-bootstrap';
+import ProductCard from '../components/ProductCard';
 import { useDispatch, useSelector } from 'react-redux';
 import { listProductsAsync } from '../features/products/productsSlice';
 import Loader from '../components/Loader';
@@ -18,7 +18,6 @@ const HomePage = () => {
     const products = useSelector(state => state.products.entities)
     const status = useSelector(state => state.products.status)
     const errors = useSelector(state => state.products.errors)
-
     // const { errors, status, entities } = productsList
 
     return (
