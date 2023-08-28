@@ -6,7 +6,6 @@ import { Row, Col, ListGroup, Image, Form, Button, Card } from 'react-bootstrap'
 import Message from '../../components/Message';
 
 const Cart = () => {
-
   // TO DO: import addToCart action from redux  
   const params = useParams();
   const dispatch = useDispatch();
@@ -15,7 +14,14 @@ const Cart = () => {
 
   const productId = params.id
   const url = window.location.search
+  // const qty = url ? url.split('=')[1] : 1
   const qty = url ? Number(url.split('=')[1]) : 1
+
+  useEffect(() => {
+    if(productId) {
+      dispatch(addItemToCart({productId, qty}))
+    }
+  }, [dispatch, productId, qty])
 
   return (
     <div>
