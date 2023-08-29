@@ -23,6 +23,13 @@ const HomePage = () => {
     return (
         <div>
             <h1>New Arrivals!</h1>
+
+            {/* {products.map(product => (
+                            <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
+                                <ProductCard product={product}/>
+                            </Col>
+            ))} */}
+            
             {status === "loading" ? <Loader />
                 : errors ? <Message>{errors}</Message>
                     :

@@ -13,14 +13,23 @@ const initialState = {
     status: 'idle'
 }
 
+
 export const addItemToCart = createAsyncThunk(
-    'cart/addItem',
+    'cart/addItemToCart',
     // ({productId, qty}) => {
     //     console.log(productId, qty)
     // }
     async ({productId, qty}) => {
         const response = await axios.get(`/api/products/${productId}`)
-        return response.data
+        const payload = {
+            id: response.data._id,
+            name: response.data.name,
+            image: response.data.image,
+            countInStock: response.data.countInStock,
+            qty: qty
+        }
+        return payload
+        // console.log(response.data)
     }
 
 )
@@ -41,33 +50,27 @@ export const cartSlice = createSlice({
             state.status = 'loading'
         })
         .addCase(addItemToCart.fulfilled, (state, action) => {
-            let item = action.payload
-            const existItem = state.entities.find(x => x.id === item._id)
-
-            if (existItem) {
-                const something = state.entities.map(x => 
-                    x.id === existItem.id ? item : x
-                )
-            } else {
-                // return original state, entities, and add the new item into the array
-            }
-
-            // let payload = {
-            //     product: data._id,
-            //     name: data.name,
-            //     image: data.image,
-            //     countInStock: data.countInStock,
-            //     qty: 1
-            // }
-            // console.log(payload)
             state.status = 'fulfilled'
-            // console.log(action.payload._id)
+            // const item = action.payload;
+            // const existingItem = state.cartItems.find(i => i.id === item._id)
+
+            // // console.log(action.payload)
+
+            // if (!existingItem) {
+            //     state.cartItems.push(item)
+            // } else {
+            //     // return original state, entities, and add the new item into the array
+
+            // }
         })
         .addCase(addItemToCart.rejected, (state) => {
             state.status = 'rejected'
         })
     }
 })
+
+
+
 
 export default cartSlice.reducer
 // export const { addItemToCart } = cartSlice.actions

@@ -26,7 +26,7 @@ function App() {
 
   // useEffect(() => {
   //   console.log("useEffect triggered")
-  //   async function fetchProducts() {
+  //   async function fe tchProducts() {
   //     const { data } = await axios.get('/api/products/')
   //     setProducts(data)
   //   }

@@ -6,27 +6,37 @@ import { persistReducer, persistStore } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
 
-const persistConfig = {
-    key: 'root',
-    storage,
-}
+
+// W/o Redux Persist
 
 const rootReducer = combineReducers({
     products: productsReducer,
     cart: cartReducer
 })
 
-const persistedReducer = persistReducer(persistConfig, rootReducer)
-
-// const middleware = [thunk]
-// const store = createStore(reducer, initialState, composeWithDevTools(applyMiddleware(...middleware)))
-// const initialState = []
-
-
-export const store = configureStore({
-    reducer: persistedReducer,
-    middleware: [thunk]
+const store = configureStore({
+    reducer: rootReducer,
+    middleware: [thunk],   
 })
 
 
-export const persistor = persistStore(store)
+// W / Redux Persist
+// const persistConfig = {
+//     key: 'root',
+//     storage
+// }
+
+// const reducers = combineReducers({
+//     products: productsReducer,
+//     cart: cartReducer
+// })
+
+// const persistedReducer = persistReducer(persistConfig, reducers)
+
+// const store = configureStore({
+//     reducer: persistedReducer,
+//     devTools: process.env.NODE_ENV !== 'production',
+//     middleware: [thunk],
+// })
+
+export default store
