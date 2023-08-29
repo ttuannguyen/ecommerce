@@ -51,17 +51,17 @@ export const cartSlice = createSlice({
         })
         .addCase(addItemToCart.fulfilled, (state, action) => {
             state.status = 'fulfilled'
-            // const item = action.payload;
-            // const existingItem = state.cartItems.find(i => i.id === item._id)
+            const item = action.payload;
+            const existingItem = state.cartItems.find(i => i.id === item._id)
 
-            // // console.log(action.payload)
+            // console.log(action.payload)
 
-            // if (!existingItem) {
-            //     state.cartItems.push(item)
-            // } else {
-            //     // return original state, entities, and add the new item into the array
+            if (!existingItem) {
+                state.cartItems.push(item)
+            } else {
+                // return original state, entities, and add the new item into the array
 
-            // }
+            }
         })
         .addCase(addItemToCart.rejected, (state) => {
             state.status = 'rejected'
