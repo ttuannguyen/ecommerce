@@ -51,16 +51,14 @@ export const cartSlice = createSlice({
         })
         .addCase(addItemToCart.fulfilled, (state, action) => {
             state.status = 'fulfilled'
-            const item = action.payload;
-            const existingItem = state.cartItems.find(i => i.id === item._id)
 
-            // console.log(action.payload)
+            const existingItem = state.cartItems.find(i => i.id === action.payload.id)
 
             if (!existingItem) {
-                state.cartItems.push(item)
+                state.cartItems.push(action.payload)
             } else {
-                // return original state, entities, and add the new item into the array
-
+                let itemFound = state.cartItems.find(i => i.id === action.payload.id)
+                itemFound = action.payload
             }
         })
         .addCase(addItemToCart.rejected, (state) => {

@@ -12,8 +12,8 @@ const Cart = () => {
 
   // dispatch(addItemToCart())
 
-  // const testing = useSelector(state => state.cart.cartItems)
-  // console.log(testing)
+  const testing = useSelector(state => state.cart.cartItems)
+  console.log(testing)
 
   const productId = params.id
   const url = window.location.search
@@ -28,7 +28,7 @@ const Cart = () => {
 
   return (
     <div>
-      
+      CART
     </div>
   )
 }
