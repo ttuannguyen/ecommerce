@@ -4,7 +4,6 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 // const items = localStorage.getItem('cartItems') !== null ? JSON.parse(localStorage.getItem("cartItems")) : [];
 
-
 const initialState = {
     entities: [],
     cartItems: [],
@@ -12,7 +11,6 @@ const initialState = {
     errors: null,
     status: 'idle'
 }
-
 
 export const addItemToCart = createAsyncThunk(
     'cart/addItemToCart',
@@ -35,6 +33,15 @@ export const addItemToCart = createAsyncThunk(
 
 )
 
+export const removeItemFromCart = createAsyncThunk(
+    'cart/removeItemFromCart',
+    async(id) => {
+        //
+    }
+
+)
+
+
 export const cartSlice = createSlice({
     name: 'cart',
     initialState,
@@ -52,9 +59,7 @@ export const cartSlice = createSlice({
         })
         .addCase(addItemToCart.fulfilled, (state, action) => {
             state.status = 'fulfilled'
-
             const existingItem = state.cartItems.find(i => i.id === action.payload.id)
-
             if (!existingItem) {
                 state.cartItems.push(action.payload)
             } else {
@@ -64,6 +69,10 @@ export const cartSlice = createSlice({
         })
         .addCase(addItemToCart.rejected, (state) => {
             state.status = 'rejected'
+        })
+        .addCase(removeItemFromCart.fulfilled, (state, action) => {
+            // find the item with the id that doesn't match, and remove that
+            // const filteredItem = state.cartItems.filter(item => item.id !== action.payload.id)
         })
     }
 })

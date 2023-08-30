@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { addItemToCart } from './cartSlice';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { Row, Col, ListGroup, Image, Form, Button, Card } from 'react-bootstrap';
 import Message from '../../components/Message';
 import { Link } from 'react-router-dom';
@@ -10,10 +10,9 @@ const Cart = () => {
   // TO DO: import addToCart action from redux  
   const params = useParams();
   const dispatch = useDispatch();
-
+  const navigate = useNavigate();
 
   const cartItems = useSelector(state => state.cart.cartItems)
-
 
   const productId = params.id
   const url = window.location.search
@@ -28,6 +27,11 @@ const Cart = () => {
 
   const removeFromCartHandler = (id) => {
     console.log(id)
+  }
+
+  const checkoutHandler = () => {
+    // history.pushState('/login?redirect=shipping')
+    navigate('/login?redirect=shipping')
   }
 
   return (
@@ -96,6 +100,17 @@ const Cart = () => {
               ${cartItems.reduce((acc, item) => acc + item.qty * item.price, 0).toFixed(2)}
             </ListGroup.Item>
           </ListGroup>
+
+          <ListGroup.Item>
+            <Button
+              type='button'
+              className='btn-block'
+              disabled={cartItems.length === 0}
+              onClick={checkoutHandler}
+            >
+              Proceed to Checkout
+            </Button>
+          </ListGroup.Item>
         </Card>
       </Col>
     </Row>
