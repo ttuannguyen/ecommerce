@@ -33,24 +33,16 @@ export const addItemToCart = createAsyncThunk(
 
 )
 
-export const removeItemFromCart = createAsyncThunk(
-    'cart/removeItemFromCart',
-    (id) => {
-        return id
-    }
-
-)
-
 
 export const cartSlice = createSlice({
     name: 'cart',
     initialState,
     reducers: {
-        // addItemToCart(state, action) {
-        //     console.log('hello redux')
-        //     const item = action.payload
-           //     const existItem = state.entities.find(i => i.product === item.product)
-        // }
+        removeItemFromCart(state, action) {
+            // console.log(action.payload)
+            const newCart = state.cartItems.filter(item => item.id !== action.payload)
+            state.cartItems = newCart
+        }
     },
     extraReducers: (builder) => {
         builder
@@ -63,19 +55,12 @@ export const cartSlice = createSlice({
             if (!existingItem) {
                 state.cartItems.push(action.payload)
             } else {
-                let itemFound = state.cartItems.find(i => i.id === action.payload.id)
-                itemFound = action.payload
-                // TO DO: update state.cartItems here
+                const updatedCart = state.cartItems.map(item => item.id === action.payload.id ? action.payload : item)
+                state.cartItems = updatedCart
             }
         })
         .addCase(addItemToCart.rejected, (state) => {
             state.status = 'rejected'
-        })
-        .addCase(removeItemFromCart.fulfilled, (state, action) => {
-            // find the item with the id that doesn't match, and remove that
-            const newCart = state.cartItems.filter(item => item.id !== action.payload)
-            state.cartItems = newCart
-
         })
     }
 })
@@ -84,4 +69,4 @@ export const cartSlice = createSlice({
 
 
 export default cartSlice.reducer
-// export const { addItemToCart } = cartSlice.actions
+export const { removeItemFromCart } = cartSlice.actions
