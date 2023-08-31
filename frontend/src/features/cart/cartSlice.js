@@ -35,8 +35,8 @@ export const addItemToCart = createAsyncThunk(
 
 export const removeItemFromCart = createAsyncThunk(
     'cart/removeItemFromCart',
-    async(id) => {
-        //
+    (id) => {
+        return id
     }
 
 )
@@ -65,6 +65,7 @@ export const cartSlice = createSlice({
             } else {
                 let itemFound = state.cartItems.find(i => i.id === action.payload.id)
                 itemFound = action.payload
+                // TO DO: update state.cartItems here
             }
         })
         .addCase(addItemToCart.rejected, (state) => {
@@ -72,7 +73,9 @@ export const cartSlice = createSlice({
         })
         .addCase(removeItemFromCart.fulfilled, (state, action) => {
             // find the item with the id that doesn't match, and remove that
-            // const filteredItem = state.cartItems.filter(item => item.id !== action.payload.id)
+            const newCart = state.cartItems.filter(item => item.id !== action.payload)
+            state.cartItems = newCart
+
         })
     }
 })
