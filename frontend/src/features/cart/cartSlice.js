@@ -19,6 +19,7 @@ export const addItemToCart = createAsyncThunk(
     // }
     async ({productId, qty}) => {
         const response = await axios.get(`/api/products/${productId}`)
+        // console.log(response.data)
         const payload = {
             id: response.data._id,
             name: response.data.name,
@@ -28,7 +29,6 @@ export const addItemToCart = createAsyncThunk(
             qty: qty
         }
         return payload
-        // console.log(response.data)
     }
 
 )
