@@ -5,7 +5,7 @@ from rest_framework.response import Response
 from .products import products
 
 from .models import Product
-from .serializers import ProductSerializer
+from .serializers import ProductSerializer, UserSerializer
 
 # Create your views here.
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
