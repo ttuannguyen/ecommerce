@@ -14,6 +14,8 @@ from .serializers import ProductSerializer, UserSerializer, UserSerializerWithTo
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
 
+from django.contrib.auth.hashers import make_password
+
 
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
     # @classmethod
@@ -42,19 +44,19 @@ class MyTokenObtainPairView(TokenObtainPairView):
 
 
 
-@api_view(['GET', 'POST'])
-def getRoutes(request):
-    routes = [
-        '/api/products',
-        '/api/products/create',
-        '/api/products/upload',
-        '/api/products/<id>/reviews',
-        '/api/products/top',
-        '/api/products/<id>',
-        '/api/products/delete/<id>',
-        '/api/products/<update>/<id>',
-    ]
-    return Response(routes)
+# @api_view(['GET', 'POST'])
+# def getRoutes(request):
+#     routes = [
+#         '/api/products',
+#         '/api/products/create',
+#         '/api/products/upload',
+#         '/api/products/<id>/reviews',
+#         '/api/products/top',
+#         '/api/products/<id>',
+#         '/api/products/delete/<id>',
+#         '/api/products/<update>/<id>',
+#     ]
+#     return Response(routes)
 
 # def getRoutes(request):
 #     routes = [
@@ -70,6 +72,18 @@ def getRoutes(request):
 #     return JsonResponse(routes, safe=False)
 
 
+@api_view(['POST'])
+def registerUser(request):
+    data = request.data
+    
+    user = User.objects.create(
+        first_name = data['name'],
+        username = data['email'],
+        email = data['email'],
+        password = make_password(data['password'])
+    )
+    serializer = UserSerializerWithToken(user, many=False)
+    return Response(serializer.data)
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
