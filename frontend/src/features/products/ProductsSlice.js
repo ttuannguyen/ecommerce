@@ -42,7 +42,10 @@ export const productsSlice = createSlice({
         })
         .addCase(listProductsAsync.rejected, (state, action) => {
             state.status = 'rejected'
-            state.errors = action.error.message
+            // state.errors = action.error.message
+            action.error.message && action.error.message.detail 
+                ? state.errors = action.error.message.detail 
+                : state.errors = action.error.message
         })
         .addCase(listProductAsync.pending, (state) => {
             state.status = 'loading'
@@ -54,7 +57,9 @@ export const productsSlice = createSlice({
         })
         .addCase(listProductAsync.rejected, (state, action) => {
             state.status = 'rejected'
-            state.errors = action.error.message
+            action.error.message && action.error.message.detail 
+                ? state.errors = action.error.message.detail 
+                : state.errors = action.error.message
         })
     }
 })
