@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import { Row, Col } from 'react-bootstrap';
-import ProductCard from '../components/ProductCard';
+import ProductCard from './ProductCard';
 import { useDispatch, useSelector } from 'react-redux';
 import { listProductsAsync } from '../features/products/productsSlice';
-import Loader from '../components/Loader';
-import Message from '../components/Message';
+import Loader from './Loader';
+import Message from './Message';
 
 
 const HomePage = () => {

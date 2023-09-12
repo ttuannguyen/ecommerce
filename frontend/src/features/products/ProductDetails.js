@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { Row, Col, Image, ListGroup, Button, Card, Form } from 'react-bootstrap';
-import Rating from '../components/Rating';
-import Loader from '../components/Loader';
-import Message from '../components/Message';
+import Rating from '../../components/Rating';
+import Loader from '../../components/Loader';
+import Message from '../../components/Message';
 import { useDispatch, useSelector } from 'react-redux';
-import { listProductAsync } from '../features/products/productsSlice';
+import { listProductAsync } from './productsSlice';
 
 // This page is used to display the details of the product
 

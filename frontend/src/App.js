@@ -6,11 +6,12 @@ import React, {useState, useEffect} from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import HomePage from './screens/HomePage';
+import HomePage from './components/HomePage';
 import { listProductsAsync } from './features/products/productsSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import ProductDetails from './screens/ProductDetails';
+import ProductDetails from './features/products/ProductDetails';
 import Cart from './features/cart/Cart';
+import Login from './features/user/Login';
 
 
 function App() {
@@ -52,6 +53,7 @@ function App() {
         <Container>
           <Routes>
               <Route exact path='/' element={<HomePage />}/>
+              <Route exact path='/login' element={<Login />}/>
               <Route path='/product/:id' element={<ProductDetails products={products}/>}/>
               <Route path='/cart/:id?' element={<Cart />} />
           </Routes>
